@@ -5,11 +5,11 @@ const Index = () => {
   const { toast } = useToast();
 
   const gizmoCats = [
-    "https://img-cdn.magiceden.dev/rs:fill:400:400:0:0/plain/https://arweave.net/Hy5JxFYRBPZD_qgEtxvzqQANXL0jZxkLDhxXGJDXXYw",
-    "https://img-cdn.magiceden.dev/rs:fill:400:400:0:0/plain/https://arweave.net/KbsSRQBR6_EwXUxJ9DQtxqwUqYqHBi4K8RCNVGXWxQY",
-    "https://img-cdn.magiceden.dev/rs:fill:400:400:0:0/plain/https://arweave.net/Hy5JxFYRBPZD_qgEtxvzqQANXL0jZxkLDhxXGJDXXYw",
-    "https://img-cdn.magiceden.dev/rs:fill:400:400:0:0/plain/https://arweave.net/KbsSRQBR6_EwXUxJ9DQtxqwUqYqHBi4K8RCNVGXWxQY",
-    "https://img-cdn.magiceden.dev/rs:fill:400:400:0:0/plain/https://arweave.net/Hy5JxFYRBPZD_qgEtxvzqQANXL0jZxkLDhxXGJDXXYw"
+    "https://ordinals.com/content/95593000b8c263e9dfdebef1827ede2cb3bc161f85e3e9808aa49cb1c0061afbi0",
+    "https://ordinals.com/content/4a60f9293770ef0a35129f8ed74693610d268f3a151f48663d5fc45c8b972298i0",
+    "https://ordinals.com/content/62b6c7af49fedfb2aad960c8ae45e1357b0a8990899ed4ddc12efd2b9ecbd0ffi0",
+    "https://ordinals.com/content/5d4a71a950fb1c6758a4d8aea7606b35330aeee6e14ba17b524f0f7c484edd76i0",
+    "https://ordinals.com/content/49be1e898c0975efae8a7de4305768fd26ecb07059f6d3d3169ae7d602702942i0"
   ];
 
   return (
@@ -35,12 +35,6 @@ const Index = () => {
               />
             </div>
           ))}
-        </div>
-
-        <div className="text-center mb-12">
-          <p className="text-6xl font-bold text-yellow-400 mb-4 animate-pulse">
-            Just 4.20 APE each
-          </p>
         </div>
 
         <div className="flex justify-center items-center my-12">
