@@ -9,7 +9,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-6xl font-bold text-yellow-400 mb-4 animate-bounce">
-            Gizmo Cat takin on ApeChain
+            Gizmo Cat coming to ApeChain
           </h1>
           <p className="text-white/80 text-xl max-w-2xl mx-auto">
             The most retarded collection of cat NFTs you&apos;ll ever find now on many chains! 
