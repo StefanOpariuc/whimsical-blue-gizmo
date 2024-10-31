@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useToast } from '@/components/ui/use-toast';
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
   DialogContent,
@@ -54,13 +54,11 @@ export function MintModal() {
 
     try {
       await writeContractAsync({
-        chain: chainId,
         address: apechain.contracts.gizmoCat.address,
         abi: apechain.contracts.gizmoCat.abi,
         functionName: 'mint',
         args: [BigInt(quantity)],
         value: parseEther(String(quantity)),
-        account: address,
       });
     } catch (error) {
       toast({
