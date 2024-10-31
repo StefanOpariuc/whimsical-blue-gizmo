@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { MintModal } from "@/components/MintModal";
+import {useAccount} from "wagmi";
 
 const Index = () => {
     const {toast} = useToast();
@@ -12,6 +13,14 @@ const Index = () => {
         "bike.gif",
         "537.png",
         "761.png"
+    ];
+
+    const gizmoCats2 = [
+        "295.png",
+        "379.png",
+        "bike.gif",
+        "200.png",
+        "615.png"
     ];
 
     const rotationClasses = [
@@ -33,7 +42,7 @@ const Index = () => {
                 <div className="flex justify-end mb-4">
                     <ConnectButton />
                 </div>
-                
+
                 <div className="text-center mb-12">
                     <h1 className="text-6xl font-bold text-yellow-400 mb-4 animate-pulse">
                         Gizmo Cat coming to ApeChain
@@ -66,6 +75,23 @@ const Index = () => {
                         Just 1 APE each
                     </p>
                     <MintModal />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
+                    {gizmoCats2.map((cat, index) => (
+                        <div
+                            key={index}
+                            className={`rounded-lg overflow-hidden hover:scale-105 transition-transform duration-200 ${getRandomRotation()}`}
+                        >
+                            <a href="https://x.com/ApechainGizmo">
+                                <img
+                                    src={cat}
+                                    alt={`Gizmo Cat ${index + 1}`}
+                                    className="w-full h-auto object-cover"
+                                />
+                            </a>
+                        </div>
+                    ))}
                 </div>
 
                 <div className="fixed bottom-4 right-4">

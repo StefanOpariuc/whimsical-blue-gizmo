@@ -18,7 +18,6 @@ export function MintModal() {
   const [quantity, setQuantity] = useState(1);
   const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
-  const chainId = useChainId();
   const { address } = useAccount();
 
   const { data: totalSupply } = useReadContract({
@@ -83,15 +82,15 @@ export function MintModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold px-8 py-4 rounded-full">
-          Mint Gizmo Cat
+        <Button disabled={true} className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold px-8 py-4 rounded-full text-xl">
+          {!address ? 'Connect Wallet to mint' : 'Almost able to Mint Gizmos'}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Mint Gizmo Cat</DialogTitle>
           <DialogDescription>
-            {totalSupply ? `${totalSupply.toString()}/10000 minted` : 'Loading...'}
+            {totalSupply ? `${totalSupply.toString()}/5544 minted` : 'Loading...'}
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
@@ -110,8 +109,8 @@ export function MintModal() {
               Total cost: {quantity} APE
             </p>
           </div>
-          <Button 
-            onClick={handleMint} 
+          <Button
+            onClick={handleMint}
             disabled={isPending || !address}
             className="w-full"
           >
