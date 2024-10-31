@@ -5,9 +5,9 @@ const Index = () => {
   const { toast } = useToast();
 
   const gizmoCats = [
-    "5.png",
+    "461.png",
     "113.png",
-    "615.png",
+    "bike.gif",
     "537.png",
     "761.png"
   ];
