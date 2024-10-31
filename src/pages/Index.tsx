@@ -5,11 +5,11 @@ const Index = () => {
   const { toast } = useToast();
 
   const gizmoCats = [
-    "https://ordinals.com/content/95593000b8c263e9dfdebef1827ede2cb3bc161f85e3e9808aa49cb1c0061afbi0",
-    "https://ordinals.com/content/4a60f9293770ef0a35129f8ed74693610d268f3a151f48663d5fc45c8b972298i0",
-    "https://ordinals.com/content/62b6c7af49fedfb2aad960c8ae45e1357b0a8990899ed4ddc12efd2b9ecbd0ffi0",
-    "https://ordinals.com/content/5d4a71a950fb1c6758a4d8aea7606b35330aeee6e14ba17b524f0f7c484edd76i0",
-    "https://ordinals.com/content/49be1e898c0975efae8a7de4305768fd26ecb07059f6d3d3169ae7d602702942i0"
+    "5.png",
+    "113.png",
+    "615.png",
+    "537.png",
+    "761.png"
   ];
 
   const rotationClasses = [
@@ -55,7 +55,7 @@ const Index = () => {
 
         <div className="flex justify-center items-center my-12">
           <iframe
-            src="https://embed.ipfscdn.io/ipfs/bafybeicd3qfzelz4su7ng6n523virdsgobrc5pcbarhwqv3dj3drh645pi/?contract=0x752506b34b72DC196d804Ddc933F7A0D3cd257a4&chain=%7B%22name%22%3A%22ApeChain%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F33139.rpc.thirdweb.com%2F%24%7BTHIRDWEB_API_KEY%7D%22%5D%2C%22nativeCurrency%22%3A%7B%22name%22%3A%22ApeCoin%22%2C%22symbol%22%3A%22APE%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22APE%22%2C%22chainId%22%3A33139%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22apechain%22%2C%22icon%22%3A%7B%22url%22%3A%22ipfs%3A%2F%2FQmcyHSQnd747pd7EmtobQd12vh4vvyYYvnNNQqKrG12ky1%22%2C%22width%22%3A512%2C%22height%22%3A512%2C%22format%22%3A%22svg%22%7D%7D&clientId=5a517335085f93ec6956718787637fdb&theme=dark&primaryColor=blue"
+            src="https://embed.ipfscdn.io/ipfs/bafybeicd3qfzelz4su7ng6n523virdsgobrc5pcbarhwqv3dj3drh645pi/?contract=0x34070Cf1264a0ccC9824c8f5E6C2Fc42e6B1BF43&chain=%7B%22name%22%3A%22ApeChain%22%2C%22chain%22%3A%22%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F33139.rpc.thirdweb.com%2F%24%7BTHIRDWEB_API_KEY%7D%22%5D%2C%22nativeCurrency%22%3A%7B%22name%22%3A%22ApeCoin%22%2C%22symbol%22%3A%22APE%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22APE%22%2C%22chainId%22%3A33139%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22apechain%22%2C%22icon%22%3A%7B%22url%22%3A%22ipfs%3A%2F%2FQmcyHSQnd747pd7EmtobQd12vh4vvyYYvnNNQqKrG12ky1%22%2C%22width%22%3A512%2C%22height%22%3A512%2C%22format%22%3A%22svg%22%7D%7D&clientId=5a517335085f93ec6956718787637fdb&theme=dark&primaryColor=blue"
             width="100%"
             height="750px"
             style={{ maxWidth: '100%' }}
@@ -64,7 +64,7 @@ const Index = () => {
 
         <div className="text-center mb-12">
           <p className="text-6xl font-bold text-yellow-400 mb-4 animate-pulse">
-            Just 4.20 APE each
+            Just 1 APE each
           </p>
         </div>
 
