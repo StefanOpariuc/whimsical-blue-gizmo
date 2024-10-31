@@ -10,7 +10,9 @@ export const apechain = defineChain({
     symbol: 'APE',
   },
   rpcUrls: {
-    default: { http: ['https://mainnet.apechain.com/'] },
+    // Using a more reliable RPC URL
+    default: { http: ['https://rpc.ankr.com/apechain'] },
+    public: { http: ['https://rpc.ankr.com/apechain'] }
   },
   blockExplorers: {
     default: { name: 'Explorer', url: 'https://explorer.apechain.com' },

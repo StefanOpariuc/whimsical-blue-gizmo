@@ -6,22 +6,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { WagmiProvider, createConfig, http } from 'wagmi';
+import { WagmiProvider } from 'wagmi';
 import { apechain } from './config/chains';
-import { injected, walletConnect } from 'wagmi/connectors';
+import { http } from 'viem';
 
-const projectId = 'YOUR_PROJECT_ID';
+// Replace this with your actual WalletConnect project ID from https://cloud.walletconnect.com
+const projectId = '21fef48091f12692cad574a6f7753643';
 
-const config = createConfig({
+const config = getDefaultConfig({
+  appName: 'Gizmo Cat',
+  projectId,
   chains: [apechain],
-  connectors: [
-    injected(),
-    walletConnect({ projectId })
-  ],
   transports: {
-    [apechain.id]: http(),
+    [apechain.id]: http()
   },
-  ssr: false
 });
 
 const queryClient = new QueryClient();
