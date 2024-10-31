@@ -8,26 +8,28 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { apechain } from './config/chains';
+import { injected, walletConnect } from 'wagmi/connectors';
 
 const projectId = 'YOUR_PROJECT_ID';
 
-const config = createConfig(
-  getDefaultConfig({
-    appName: 'Gizmo Cat',
-    projectId,
-    chains: [apechain],
-    transports: {
-      [apechain.id]: http(),
-    },
-  })
-);
+const config = createConfig({
+  chains: [apechain],
+  connectors: [
+    injected(),
+    walletConnect({ projectId })
+  ],
+  transports: {
+    [apechain.id]: http(),
+  },
+  ssr: false
+});
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <WagmiProvider config={config}>
-    <RainbowKitProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <RainbowKitProvider>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -37,8 +39,8 @@ const App = () => (
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
-      </QueryClientProvider>
-    </RainbowKitProvider>
+      </RainbowKitProvider>
+    </QueryClientProvider>
   </WagmiProvider>
 );
 

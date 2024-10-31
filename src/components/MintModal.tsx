@@ -43,6 +43,15 @@ export function MintModal() {
   });
 
   const handleMint = async () => {
+    if (!address) {
+      toast({
+        title: "Error",
+        description: "Please connect your wallet first",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (quantity < 1 || quantity > 10) {
       toast({
         title: "Error",
@@ -59,6 +68,8 @@ export function MintModal() {
         functionName: 'mint',
         args: [BigInt(quantity)],
         value: parseEther(String(quantity)),
+        chain: apechain,
+        account: address
       });
     } catch (error) {
       toast({
@@ -101,7 +112,7 @@ export function MintModal() {
           </div>
           <Button 
             onClick={handleMint} 
-            disabled={isPending}
+            disabled={isPending || !address}
             className="w-full"
           >
             {isPending ? 'Minting...' : 'Mint'}
