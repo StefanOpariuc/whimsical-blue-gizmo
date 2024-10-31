@@ -12,16 +12,17 @@ import {
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { apechain } from './config/chains';
 
-const config = createConfig(
-  getDefaultConfig({
+const config = createConfig({
+  chains: [apechain],
+  transports: {
+    [apechain.id]: http(),
+  },
+  ssr: false,
+  ...getDefaultConfig({
     appName: 'Gizmo Cat',
     projectId: 'YOUR_PROJECT_ID',
-    chains: [apechain],
-    transports: {
-      [apechain.id]: http()
-    },
-  })
-);
+  }),
+});
 
 const queryClient = new QueryClient();
 

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useReadContract, useWriteContract, useWatchContractEvent } from 'wagmi';
+import { useReadContract, useWriteContract, useWatchContractEvent, useChainId, useAccount } from 'wagmi';
 import { parseEther } from 'viem';
 import { apechain } from '@/config/chains';
 
@@ -18,6 +18,8 @@ export function MintModal() {
   const [quantity, setQuantity] = useState(1);
   const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
+  const chainId = useChainId();
+  const { address } = useAccount();
 
   const { data: totalSupply } = useReadContract({
     address: apechain.contracts.gizmoCat.address,
@@ -25,7 +27,7 @@ export function MintModal() {
     functionName: 'totalSupply',
   });
 
-  const { writeContract, isLoading: isMinting } = useWriteContract();
+  const { writeContractAsync, isPending } = useWriteContract();
 
   useWatchContractEvent({
     address: apechain.contracts.gizmoCat.address,
@@ -40,7 +42,7 @@ export function MintModal() {
     },
   });
 
-  const handleMint = () => {
+  const handleMint = async () => {
     if (quantity < 1 || quantity > 10) {
       toast({
         title: "Error",
@@ -50,13 +52,23 @@ export function MintModal() {
       return;
     }
 
-    writeContract({
-      address: apechain.contracts.gizmoCat.address,
-      abi: apechain.contracts.gizmoCat.abi,
-      functionName: 'mint',
-      args: [BigInt(quantity)],
-      value: parseEther(String(quantity)),
-    });
+    try {
+      await writeContractAsync({
+        chain: chainId,
+        address: apechain.contracts.gizmoCat.address,
+        abi: apechain.contracts.gizmoCat.abi,
+        functionName: 'mint',
+        args: [BigInt(quantity)],
+        value: parseEther(String(quantity)),
+        account: address,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to mint. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -91,10 +103,10 @@ export function MintModal() {
           </div>
           <Button 
             onClick={handleMint} 
-            disabled={isMinting}
+            disabled={isPending}
             className="w-full"
           >
-            {isMinting ? 'Minting...' : 'Mint'}
+            {isPending ? 'Minting...' : 'Mint'}
           </Button>
         </div>
       </DialogContent>
