@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useContractRead, useContractWrite, useWaitForTransaction } from 'wagmi';
+import { useReadContract, useWriteContract, useWatchContractEvent } from 'wagmi';
 import { parseEther } from 'viem';
 import { apechain } from '@/config/chains';
 
@@ -19,21 +19,19 @@ export function MintModal() {
   const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data: totalSupply } = useContractRead({
+  const { data: totalSupply } = useReadContract({
     address: apechain.contracts.gizmoCat.address,
     abi: apechain.contracts.gizmoCat.abi,
     functionName: 'totalSupply',
   });
 
-  const { write: mint, data: mintData } = useContractWrite({
+  const { writeContract, isLoading: isMinting } = useWriteContract();
+
+  useWatchContractEvent({
     address: apechain.contracts.gizmoCat.address,
     abi: apechain.contracts.gizmoCat.abi,
-    functionName: 'mint',
-  });
-
-  const { isLoading: isMinting } = useWaitForTransaction({
-    hash: mintData?.hash,
-    onSuccess() {
+    eventName: 'Transfer',
+    onLogs() {
       toast({
         title: "Success!",
         description: `Successfully minted ${quantity} Gizmo Cat${quantity > 1 ? 's' : ''}!`,
@@ -52,7 +50,10 @@ export function MintModal() {
       return;
     }
 
-    mint?.({
+    writeContract({
+      address: apechain.contracts.gizmoCat.address,
+      abi: apechain.contracts.gizmoCat.abi,
+      functionName: 'mint',
       args: [BigInt(quantity)],
       value: parseEther(String(quantity)),
     });

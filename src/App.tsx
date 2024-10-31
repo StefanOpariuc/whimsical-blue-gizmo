@@ -6,35 +6,28 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import '@rainbow-me/rainbowkit/styles.css';
 import {
-  getDefaultWallets,
+  getDefaultConfig,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
+import { WagmiProvider, createConfig, http } from 'wagmi';
 import { apechain } from './config/chains';
 
-const { chains, publicClient } = configureChains(
-  [apechain],
-  [publicProvider()]
+const config = createConfig(
+  getDefaultConfig({
+    appName: 'Gizmo Cat',
+    projectId: 'YOUR_PROJECT_ID',
+    chains: [apechain],
+    transports: {
+      [apechain.id]: http()
+    },
+  })
 );
-
-const { connectors } = getDefaultWallets({
-  appName: 'Gizmo Cat',
-  projectId: 'YOUR_PROJECT_ID',
-  chains
-});
-
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient
-});
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <WagmiConfig config={wagmiConfig}>
-    <RainbowKitProvider chains={chains}>
+  <WagmiProvider config={config}>
+    <RainbowKitProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
@@ -47,7 +40,7 @@ const App = () => (
         </TooltipProvider>
       </QueryClientProvider>
     </RainbowKitProvider>
-  </WagmiConfig>
+  </WagmiProvider>
 );
 
 export default App;
