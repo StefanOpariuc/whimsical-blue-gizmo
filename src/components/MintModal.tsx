@@ -66,7 +66,7 @@ export function MintModal() {
         abi: apechain.contracts.gizmoCat.abi,
         functionName: 'mint',
         args: [BigInt(quantity)],
-        value: parseEther(String(quantity)),
+        value: parseEther(String(1.05 * quantity)),
         chain: apechain,
         account: address
       });
@@ -82,8 +82,8 @@ export function MintModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button disabled={true} className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold px-8 py-4 rounded-full text-xl">
-          {!address ? 'Connect Wallet to mint' : 'Almost able to Mint Gizmos'}
+        <Button disabled={!address} className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold px-8 py-4 rounded-full text-xl">
+          {!address ? 'Connect Wallet to mint' : 'Mint Gizmo!'}
         </Button>
       </DialogTrigger>
       <DialogContent>

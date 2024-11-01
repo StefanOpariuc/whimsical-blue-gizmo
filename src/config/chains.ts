@@ -17,7 +17,7 @@ export const apechain = {
     },
     contracts: {
         gizmoCat: {
-            address: '0x5756f9a241786e087c8ad076fba8a4d650ace6c7' as `0x${string}`,
+            address: '0x2A0dc4de3b2A5dbeb725B7f84ed84901B1d633A5' as `0x${string}`,
             abi: [
                 {
                     "inputs": [],
